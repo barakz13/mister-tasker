@@ -83,20 +83,18 @@ async function getDocuments(collectionName, filterBy) {
   const db = getFirestore();
   var collectionRef = collection(db, collectionName);
   var orderByParams = [];
-
-  if (filterBy.byUserId) {
+  if (filterBy?.byUserId) {
     collectionRef = query(
       collectionRef,
       where('byUser.id', '==', filterBy.byUserId)
     );
   }
-
   // collectionRef = query(collectionRef, limit(pageSize))
   // if (filterBy.pageNo && gLastDocForPaging) {
   //     collectionRef = query(collectionRef, startAfter(gLastDocForPaging))
   // }
-
   const querySnapshot = await getDocs(collectionRef);
+  console.log(querySnapshot);
   gLastDocForPaging = querySnapshot.docs[querySnapshot.docs.length - 1];
   const docs = [];
   querySnapshot.forEach((doc) => {

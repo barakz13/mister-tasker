@@ -1,22 +1,20 @@
 // import { storageService } from './storage-service.js'
-import { httpService } from './http.service';
-import { utilService } from './util.service.js';
+import { makeId } from './util-service';
 import { firebaseService } from './firebase-service';
 
-const COLLECTION_NAME = 'tasks';
+const COLLECTION_NAME = 'task';
 
 export const taskService = {
   query,
   getById,
   remove,
   save,
-  startTask,
-  startStopWorker,
   getEmptyTask,
 };
 
 async function query(filterBy) {
-  return await firebaseService.getDocuments(COLLECTION_NAME);
+  const tasks = await firebaseService.getDocuments(COLLECTION_NAME);
+  return tasks;
 }
 
 async function getById(taskId) {
@@ -28,7 +26,7 @@ async function getById(taskId) {
 // }
 
 async function save(task) {
-  const savedTask = task._id
+  const savedTask = task.id
     ? await firebaseService.updateDocument(COLLECTION_NAME, task)
     : await firebaseService.addDocument(COLLECTION_NAME, task);
   return savedTask;

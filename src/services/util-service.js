@@ -7,3 +7,14 @@ export function makeId(length = 4) {
   }
   return text;
 }
+
+export function getDate(timestamp) {
+  console.log(timestamp);
+  return new Date(timestamp.seconds * 1000).toLocaleTimeString([], {
+    timeStyle: 'short',
+  });
+}
+
+export function getTime(timestamp) {
+  return new Date(timestamp.seconds * 1000).toString().split(' ')[4];
+}
