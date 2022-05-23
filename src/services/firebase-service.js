@@ -76,7 +76,7 @@ async function updateDocument(collectionName, document, id) {
 
 async function deleteDocument(collectionName, document) {
   const db = getFirestore();
-  await deleteDoc(doc(db, collectionName, document));
+  await deleteDoc(doc(db, collectionName, document.id));
 }
 
 async function getDocuments(collectionName, filterBy) {
@@ -97,7 +97,7 @@ async function getDocuments(collectionName, filterBy) {
   console.log(querySnapshot);
   gLastDocForPaging = querySnapshot.docs[querySnapshot.docs.length - 1];
   const docs = [];
-  querySnapshot.forEach((doc) => {
+  querySnapshot.forEach(doc => {
     // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
     docs.push({ id: doc.id, ...doc.data() });
   });
@@ -108,9 +108,9 @@ async function getDocuments(collectionName, filterBy) {
 function subscribe(collectionName, cb) {
   const db = getFirestore();
   const docs = [];
-  const unsub = onSnapshot(collection(db, collectionName), (querySnapshot) => {
+  const unsub = onSnapshot(collection(db, collectionName), querySnapshot => {
     // console.log("Current data: ", querySnapshot.docs);
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(doc => {
       // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
       docs.push({ id: doc.id, ...doc.data() });
     });
