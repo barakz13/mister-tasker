@@ -43,7 +43,7 @@ export const TaskEdit = props => {
   return (
     <section className="task-edit-container">
       <form onSubmit={onSaveTask}>
-        <h1>Update task</h1>
+        <h1>{taskToEdit.id ? 'Update task' : 'Add task'} </h1>
         <label htmlFor="title">Enter title:</label>
         <input
           type="text"
@@ -57,6 +57,15 @@ export const TaskEdit = props => {
           type="text"
           name="description"
           value={taskToEdit.description}
+          onChange={handleChange}
+        />
+        <label htmlFor="importance">Enter importance:</label>
+        <input
+          type="number"
+          name="importance"
+          min={1}
+          max={3}
+          value={taskToEdit.importance}
           onChange={handleChange}
         />
         <button>{taskToEdit.id ? 'Update' : 'Save'}</button>
