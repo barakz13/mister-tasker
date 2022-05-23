@@ -18,3 +18,18 @@ export function getDate(timestamp) {
 export function getTime(timestamp) {
   return new Date(timestamp.seconds * 1000).toString().split(' ')[4];
 }
+
+export function getTime2(timestamp) {
+  var date = new Date(timestamp.seconds * 1000);
+  date =
+    date.getDate() +
+    '/' +
+    (date.getMonth() + 1) +
+    '/' +
+    date.getFullYear() +
+    ' ' +
+    date.getHours() +
+    ':' +
+    date.getMinutes();
+  return date;
+}
