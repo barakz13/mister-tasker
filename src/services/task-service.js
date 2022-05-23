@@ -27,7 +27,7 @@ async function getById(taskId) {
 
 async function save(task) {
   const savedTask = task.id
-    ? await firebaseService.updateDocument(COLLECTION_NAME, task)
+    ? await firebaseService.updateDocument(COLLECTION_NAME, task, task.id)
     : await firebaseService.addDocument(COLLECTION_NAME, task);
   return savedTask;
 }
