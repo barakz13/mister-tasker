@@ -10,7 +10,7 @@ import './assets/scss/styles.scss';
 import { AppFooter } from './components/AppFooter';
 import { AppHeader } from './components/AppHeader';
 import { TaskApp } from './views/TaskApp';
-import { TaskEdit } from './components/TaskEdit';
+import { TaskEdit } from './views/TaskEdit';
 import { HomePage } from './views/HomePage';
 
 export function App() {
