@@ -57,7 +57,7 @@ async function addDocument(collectionName, document) {
   }
 }
 
-async function getDocument(collectionName, { id }) {
+async function getDocument(collectionName, id) {
   const db = getFirestore();
   const snap = await getDoc(doc(db, collectionName, id));
 

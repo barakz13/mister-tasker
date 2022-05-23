@@ -10,7 +10,7 @@ export function TaskDetails(props) {
   }, []);
 
   const getTask = async () => {
-    const taskId = props.match.params;
+    const taskId = props.match.params.id;
     try {
       const task = await taskService.getById(taskId);
       console.log('task', task);
