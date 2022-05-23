@@ -50,7 +50,7 @@ export const TaskEdit = props => {
           name="title"
           value={taskToEdit.title}
           onChange={handleChange}
-          ref={inputRef}
+          // ref={inputRef}
         />
         <label htmlFor="description">Enter description:</label>
         <input
@@ -63,7 +63,7 @@ export const TaskEdit = props => {
       </form>
 
       <div className="btns-action">
-        <Link to={`/task/${taskToEdit._id}`}>
+        <Link to={`/task`}>
           <button>Back</button>
         </Link>
         <button onClick={() => onRemoveTask(taskToEdit._id)}>Delete</button>

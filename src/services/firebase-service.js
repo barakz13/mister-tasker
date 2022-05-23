@@ -71,13 +71,12 @@ async function getDocument(collectionName, id) {
 async function updateDocument(collectionName, document, id) {
   const db = getFirestore();
   // returns undefined
-  console.log('taskToEdit', document, id);
   await setDoc(doc(db, collectionName, id), document, { merge: true });
 }
 
 async function deleteDocument(collectionName, document) {
   const db = getFirestore();
-  await deleteDoc(doc(db, collectionName, document));
+  await deleteDoc(doc(db, collectionName, document.id));
 }
 
 async function getDocuments(collectionName, filterBy) {
