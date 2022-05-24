@@ -1,7 +1,8 @@
 import { TaskPreview } from './TaskPreview';
 import { useEffect } from 'react';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { getDate } from '../services/util-service';
+import { Link } from 'react-router-dom';
+import { getTime2 } from '../services/util-service';
 
 export function TaskList({ tasks }) {
   useEffect(() => {
@@ -12,13 +13,21 @@ export function TaskList({ tasks }) {
 
   const rows = tasks.map((task) => ({
     ...task,
-    createdAt: getDate(task.createdAt),
+    createdAt: getTime2(task.createdAt),
   }));
 
   const columns = [
-    { field: 'title', headerName: 'Title', width: 150 },
+    {
+      field: 'title',
+      headerName: 'Title',
+      width: 150,
+      renderCell: (params) => (
+        <Link to={`/task/${params.id}`}>{params.value}</Link>
+      ),
+    },
     { field: 'status', headerName: 'Status', width: 150 },
     { field: 'importance', headerName: 'Importance', width: 150 },
+    { field: 'status', headerName: 'Status', width: 150 },
     {
       field: 'createdAt',
       headerName: 'Created At',
@@ -33,7 +42,7 @@ export function TaskList({ tasks }) {
           <TaskPreview task={task} key={task.id} />
         ))}
       </ul> */}
-      <div style={{ height: 300, width: '50%', marginLeft: '25%' }}>
+      <div style={{ height: 300, width: '70%', marginLeft: '15%' }}>
         <DataGrid rows={rows} columns={columns} />
       </div>
     </section>

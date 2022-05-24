@@ -30,6 +30,6 @@ export function getTime2(timestamp) {
     ' ' +
     date.getHours() +
     ':' +
-    date.getMinutes();
+    date.getMinutes().toString().padStart(2, '0');
   return date;
 }
