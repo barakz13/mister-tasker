@@ -1,0 +1,24 @@
+.task-app {
+  height: 84vh;
+
+  .task-app-btns {
+    flex: 0.3;
+    .btn-worker {
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      border: none;
+      background: $app-bg;
+      font-size: 21px;
+    }
+
+    .btn-add {
+      border-radius: 50%;
+      height: 75px;
+      width: 75px;
+      border: none;
+      background: $app-bg;
+      font-size: 15px;
+    }
+  }
+}

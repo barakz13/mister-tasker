@@ -4,11 +4,16 @@
 @import 'setup/variables';
 
 // BASE
-// @import 'base/fonts';
 @import 'base/util';
+@import 'base/helpers';
 
 // VIEWS
 @import 'views/app';
+@import 'views/task-app';
+@import 'views/task-edit';
+@import 'views/task-details';
 
 // COMPONENTS
-@import 'components/contact-preview';
+@import 'components/app-header';
+@import 'components/app-footer';
+@import 'components/task-list';

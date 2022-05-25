@@ -9,7 +9,6 @@ export function makeId(length = 4) {
 }
 
 export function getDate(timestamp) {
-  console.log(timestamp);
   return new Date(timestamp.seconds * 1000).toLocaleTimeString([], {
     timeStyle: 'short',
   });
@@ -20,7 +19,7 @@ export function getTime(timestamp) {
 }
 
 export function getTime2(timestamp) {
-  var date = new Date(timestamp.seconds * 1000);
+  var date = new Date(timestamp * 1000);
   date =
     date.getDate() +
     '/' +

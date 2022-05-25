@@ -1,0 +1,25 @@
+.task-details-section {
+  height: 84vh;
+  .task-details {
+    width: 50%;
+    margin-left: 25%;
+    height: 80%;
+
+    .task-details-title {
+      font-size: 30px;
+    }
+
+    .task-details-label {
+      font-size: 20px;
+    }
+
+    .task-details-back {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      border: none;
+      background: $app-bg;
+      font-size: 13px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 // import { storageService } from './storage-service.js'
 import { makeId } from './util-service';
 import { firebaseService } from './firebase-service';
+import { externalService } from './externalService';
 
 const COLLECTION_NAME = 'task';
 
@@ -13,7 +14,7 @@ export const taskService = {
 };
 
 async function query(filterBy) {
-  const tasks = await firebaseService.getDocuments(COLLECTION_NAME);
+  const tasks = await firebaseService.getDocuments(COLLECTION_NAME, filterBy);
   return tasks;
 }
 
@@ -36,23 +37,15 @@ async function remove(task) {
   return await firebaseService.deleteDocument(COLLECTION_NAME, task);
 }
 
-// async function startTask(task) {
-//   return await httpService.put(`task/${task._id}/start`, task);
-// }
-
-// async function startStopWorker(isWorkerOn) {
-//   return await httpService.put(`task/workerrunning`, { isWorkerOn });
-// }
-
-function getEmptyTask(title, description = '', importance = 1) {
+function getEmptyTask() {
   return {
-    title,
+    title: '',
     status: 'New',
-    description,
-    importance,
-    // lastTriedAt: null,
+    description: '',
+    importance: 1,
+    lastTriedAt: null,
     triesCount: 0,
     doneAt: null,
-    // errors: [],
+    errors: [],
   };
 }

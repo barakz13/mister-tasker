@@ -5,6 +5,10 @@
   font-family: 'Roboto-Regular', sans-serif;
 }
 
+body {
+  background: $gray-50;
+}
+
 html {
   font-size: 14px;
 
@@ -327,4 +331,16 @@ img {
 
 .clr-teal {
   color: $teal-500;
+}
+
+button {
+  cursor: pointer;
+}
+
+.div-loading {
+  display: flex;
+  justify-content: center;
+  height: 84vh;
+  align-items: center;
+  font-size: 25px;
 }

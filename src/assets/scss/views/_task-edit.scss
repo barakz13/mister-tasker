@@ -1,0 +1,42 @@
+.task-edit-section {
+  height: 84vh;
+
+  .task-edit {
+    width: 50%;
+    margin-left: 25%;
+    height: 80%;
+    padding-top: 10%;
+
+    .task-edit-form {
+      flex: 0.7;
+
+      .task-edit-input {
+        width: 50%;
+        height: 30px;
+        font-size: 16px;
+      }
+    }
+
+    .task-edit-btns {
+      flex: 0.2;
+
+      .task-edit-btn-bottom {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        border: none;
+        background: $app-bg;
+        font-size: 13px;
+      }
+    }
+
+    .task-edit-btn {
+      border-radius: 50%;
+      height: 75px;
+      width: 75px;
+      border: none;
+      background: $app-bg;
+      font-size: 15px;
+    }
+  }
+}
