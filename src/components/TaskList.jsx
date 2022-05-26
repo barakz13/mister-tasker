@@ -26,9 +26,17 @@ function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
   }));
 
   const columns = [
-    { field: 'title', headerName: 'Title', width: 150 },
+    {
+      field: 'title',
+      headerName: 'Title',
+      width: 150,
+      renderCell: (params) => (
+        <Link to={`/task/${params.id}`}>{params.value}</Link>
+      ),
+    },
     { field: 'status', headerName: 'Status', width: 150 },
     { field: 'importance', headerName: 'Importance', width: 150 },
+    { field: 'status', headerName: 'Status', width: 150 },
     {
       field: 'createdAt',
       headerName: 'Created At',
