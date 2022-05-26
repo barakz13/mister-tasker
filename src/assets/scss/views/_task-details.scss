@@ -14,12 +14,9 @@
     }
 
     .task-details-back {
-      border-radius: 50%;
-      height: 60px;
-      width: 60px;
-      border: none;
-      background: $app-bg;
-      font-size: 13px;
+      &:hover {
+        background: $gray-200;
+      }
     }
   }
 }

@@ -1,0 +1,17 @@
+.home-page-section {
+  height: 84vh;
+  background-color: white;
+
+  .home-page-img-div {
+    height: 100%;
+  }
+
+  .home-page-btn {
+    position: absolute;
+    right: 1000px;
+    top: 240px;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+  }
+}

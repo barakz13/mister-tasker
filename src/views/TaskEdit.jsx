@@ -79,7 +79,7 @@ export const TaskEdit = ({ history, match }) => {
             value={taskToEdit.importance}
             onChange={handleChange}
           />
-          <button className="task-edit-btn">
+          <button className="task-edit-btn btn">
             {taskToEdit.id ? 'Update' : 'Save'}
           </button>
         </form>
@@ -87,7 +87,7 @@ export const TaskEdit = ({ history, match }) => {
         <div className="task-edit-btns flex space-evenly align-center">
           {match.params.id ? (
             <button
-              className="task-edit-btn-bottom"
+              className="task-edit-btn-bottom btn"
               onClick={() => onRemoveTask(taskToEdit._id)}
             >
               Delete
@@ -96,7 +96,7 @@ export const TaskEdit = ({ history, match }) => {
             ''
           )}
           <Link to={`/task`}>
-            <button className="task-edit-btn-bottom">Back</button>
+            <button className="task-edit-btn-bottom btn">Back</button>
           </Link>
         </div>
       </div>

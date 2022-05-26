@@ -2,18 +2,23 @@
   flex: 0.7;
   .task-list {
     height: 500px;
-    width: 800px;
+    width: 900px;
     margin: 100px auto;
 
-    .actions-cell {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      height: 100%;
-      width: 100%;
+    .data-grid {
+      font-size: 0.975rem;
+      .actions-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 100%;
+        width: 100%;
 
-      .actions-cell-btn {
-        border-radius: 50%;
+        .actions-cell-btn {
+          &:hover {
+            background: $gray-300;
+          }
+        }
       }
     }
   }

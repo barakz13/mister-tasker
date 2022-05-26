@@ -37,13 +37,13 @@ function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
     {
       field: 'action',
       headerName: 'Actions',
-      width: 150,
+      width: 250,
       renderCell: (params) => {
         return (
           <section className="actions-cell">
             {params.row.status === 'New' || params.row.status === 'Failed' ? (
               <button
-                className="actions-cell-btn btn-start-retry"
+                className="actions-cell-btn btn-start-retry btn"
                 onClick={() => onSaveTask(params.id)}
               >
                 {params.row.status === 'New' ? 'Start' : 'Retry'}
@@ -53,13 +53,13 @@ function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
             )}
             <button
               onClick={() => onGoToDetails(params.id)}
-              className="actions-cell-btn btn-details"
+              className="actions-cell-btn btn-details btn"
             >
               Details
             </button>
             <button
               onClick={() => onGoToEdit(params.id)}
-              className="actions-cell-btn btn-edit"
+              className="actions-cell-btn btn-edit btn"
             >
               Edit
             </button>
@@ -77,7 +77,7 @@ function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
         ))}
       </ul> */}
       <div className="task-list">
-        <DataGrid rows={rows} columns={columns} />
+        <DataGrid className="data-grid" rows={rows} columns={columns} />
       </div>
     </section>
   );

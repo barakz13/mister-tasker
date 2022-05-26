@@ -10,6 +10,10 @@
     .task-edit-form {
       flex: 0.7;
 
+      label {
+        font-size: 18px;
+      }
+
       .task-edit-input {
         width: 50%;
         height: 30px;
@@ -21,22 +25,17 @@
       flex: 0.2;
 
       .task-edit-btn-bottom {
-        border-radius: 50%;
-        height: 60px;
-        width: 60px;
-        border: none;
-        background: $app-bg;
-        font-size: 13px;
+        &:hover {
+          background: $gray-200;
+        }
       }
     }
 
     .task-edit-btn {
-      border-radius: 50%;
-      height: 75px;
-      width: 75px;
-      border: none;
-      background: $app-bg;
-      font-size: 15px;
+      font-size: 20px;
+      &:hover {
+        background: $gray-200;
+      }
     }
   }
 }

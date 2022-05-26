@@ -42,7 +42,7 @@ export function TaskDetails(props) {
           Created at: {getTime2(task.createdAt.seconds)}
         </p>
         <Link to={`/task`}>
-          <button className="task-details-back">Back</button>
+          <button className="task-details-back btn">Back</button>
         </Link>
       </section>
     </section>

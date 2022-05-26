@@ -45,12 +45,12 @@ export function TaskApp({ history }) {
     <section className="task-app flex column">
       <div className="task-app-btns flex space-evenly">
         <div className="btn-worker-div flex justify-center align-center">
-          <button className="btn-worker" onClick={onStartWorker}>
+          <button className="btn-worker btn" onClick={onStartWorker}>
             {isWorkerOn ? 'Stop' : 'Start'}
           </button>
         </div>
         <div className="btn-add-div flex justify-center align-center">
-          <button className="btn-add" onClick={onGoToEdit}>
+          <button className="btn-add btn" onClick={onGoToEdit}>
             Add
           </button>
         </div>
