@@ -2,7 +2,7 @@ import { taskService } from '../services/task-service';
 import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { getDate, getTime, getTime2 } from '../services/util-service';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
   useEffect(() => {
@@ -30,11 +30,7 @@ function _TaskList({ tasks, onSaveTask, onStartWorker, isWorkerOn, history }) {
       field: 'title',
       headerName: 'Title',
       width: 150,
-      renderCell: (params) => (
-        <Link to={`/task/${params.id}`}>{params.value}</Link>
-      ),
     },
-    { field: 'status', headerName: 'Status', width: 150 },
     { field: 'importance', headerName: 'Importance', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
     {
