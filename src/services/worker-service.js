@@ -1,5 +1,6 @@
 import { taskService } from './task-service';
 import { externalService } from './externalService';
+import { firebaseService } from './firebase-service';
 
 export const workerService = {
   performTask,
@@ -41,14 +42,12 @@ async function _runWorker() {
         await performTask(task);
       } catch (err) {
         console.log(`Failed Task`, err);
-
       } finally {
         delay = 1;
       }
     } else {
       gIsWorkerOn = false;
       console.log('Snoozing... no tasks to perform');
-
     }
   } catch (err) {
     console.log(`Failed getting next task to execute`, err);
@@ -64,12 +63,7 @@ function startStopWorker(isWorkerOn) {
 
 async function getNextTask() {
   try {
-    const filterBy = {
-      doneAt: null,
-      triesCount: 6,
-      status: ['Running', 'Done'],
-    };
-    const tasks = await taskService.query(filterBy);
+    const tasks = await firebaseService.filteredDocs();
     //   {
     //     $and: [
     //       { doneAt: null },

@@ -28,12 +28,12 @@ export function TaskApp({ history }) {
   };
 
   const onStartWorker = () => {
-    console.log('first', isWorkerOn);
+    // console.log('first', isWorkerOn);
     // isWorkerOn = !isWorkerOn;
     setIsWorkerOn((isWorkerOn = !isWorkerOn));
     // setIsWorkerOn(!isWorkerOn);
-    console.log('second', isWorkerOn);
-    // workerService.startStopWorker(isWorkerOn);
+    // console.log('second', isWorkerOn);
+    workerService.startStopWorker(isWorkerOn);
   };
 
   const onGoToEdit = () => {

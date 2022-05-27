@@ -22,6 +22,7 @@ var gLastDocForPaging = null;
 
 export const firebaseService = {
   getDocuments,
+  filteredDocs,
   getDocument,
   addDocument,
   deleteDocument,
@@ -80,28 +81,42 @@ async function deleteDocument(collectionName, document) {
   await deleteDoc(doc(db, collectionName, document.id));
 }
 
-async function getDocuments(collectionName, filterBy = null) {
+async function filteredDocs() {
+  const db = getFirestore();
+  var collectionRef = collection(db, 'task');
+  collectionRef = query(
+    collectionRef,
+    // where('status', 'not-in', filterBy.status),
+    orderBy('importance', 'asc')
+    // where('triesCount', '<', filterBy.triesCount)
+  );
+  const querySnapshot = await getDocs(collectionRef);
+  const docs = [];
+  querySnapshot.forEach((doc) => {
+    console.log(doc);
+    console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    docs.push({ id: doc.id, ...doc.data() });
+  });
+  console.log('docs after sort', docs);
+  const filteredByStatus = docs.filter((doc) => {
+    return doc.status !== 'Done' && doc.status !== 'Running';
+  });
+  const filteredByTriesCount = filteredByStatus.filter((doc) => {
+    return doc.triesCount < 6;
+  });
+  return filteredByTriesCount;
+}
+
+async function getDocuments(collectionName) {
   const db = getFirestore();
   var collectionRef = collection(db, collectionName);
   var orderByParams = [];
-  if (filterBy) {
-    collectionRef = query(
-      // collectionRef,
-      collectionRef,
-      // where('doneAt', '==', filterBy.doneAt),
-      where('triesCount', '<', filterBy.triesCount)
-      // where('status', 'not-in', filterBy.status),
-    );
-  }
-  // collectionRef = query(collectionRef, limit(pageSize))
-  // if (filterBy.pageNo && gLastDocForPaging) {
-  //     collectionRef = query(collectionRef, startAfter(gLastDocForPaging))
-  // }
+  console.log(collectionRef);
   const querySnapshot = await getDocs(collectionRef);
-  gLastDocForPaging = querySnapshot.docs[querySnapshot.docs.length - 1];
+  console.log(querySnapshot);
   const docs = [];
   querySnapshot.forEach((doc) => {
-    // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`)
+    // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     docs.push({ id: doc.id, ...doc.data() });
   });
   return docs;
