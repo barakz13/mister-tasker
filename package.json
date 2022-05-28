@@ -2,7 +2,7 @@
   "name": "mister-tasker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://barakz13.github.io",
+  "homepage": "http://barakz13.github.io/mister-tasker",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/style": "^0.8.0",
