@@ -5,7 +5,8 @@ import { workerService } from '../services/worker-service';
 
 export function TaskApp({ history }) {
   const [tasks, setTasks] = useState(null);
-  let [isWorkerOn, setIsWorkerOn] = useState(false);
+  let [isWorkerOnTries, setIsWorkerOnTries] = useState(false);
+  let [isWorkerOnImportance, setIsWorkerOnImportance] = useState(false);
 
   useEffect(() => {
     console.log('task app mounted');
@@ -27,13 +28,18 @@ export function TaskApp({ history }) {
     } catch (err) {}
   };
 
-  const onStartWorker = () => {
+  const onStartWorker = (value) => {
     // console.log('first', isWorkerOn);
     // isWorkerOn = !isWorkerOn;
-    setIsWorkerOn((isWorkerOn = !isWorkerOn));
+    if (value === 'tries') {
+      setIsWorkerOnTries((isWorkerOnTries = !isWorkerOnTries));
+      workerService.startStopWorker(isWorkerOnTries, 'tries');
+    } else {
+      setIsWorkerOnImportance((isWorkerOnImportance = !isWorkerOnImportance));
+      workerService.startStopWorker(isWorkerOnImportance, 'importance');
+    }
     // setIsWorkerOn(!isWorkerOn);
     // console.log('second', isWorkerOn);
-    workerService.startStopWorker(isWorkerOn);
   };
 
   const onGoToEdit = () => {
@@ -44,9 +50,20 @@ export function TaskApp({ history }) {
   return (
     <section className="task-app flex column">
       <div className="task-app-btns flex space-evenly">
-        <div className="btn-worker-div flex justify-center align-center">
-          <button className="btn-worker btn" onClick={onStartWorker}>
-            {isWorkerOn ? 'Stop' : 'Start'}
+        <div className="btn-worker-div flex space-between align-center">
+          <button
+            className="btn-worker btn"
+            onClick={() => onStartWorker('tries')}
+          >
+            {isWorkerOnTries ? 'Stop' : 'Start'}{' '}
+            <span className="btn-worker-span"> (fewer tries first)</span>
+          </button>
+          <button
+            className="btn-worker btn"
+            onClick={() => onStartWorker('importance')}
+          >
+            {isWorkerOnImportance ? 'Stop' : 'Start'}{' '}
+            <span className="btn-worker-span">(higher importance first)</span>
           </button>
         </div>
         <div className="btn-add-div flex justify-center align-center">

@@ -5,6 +5,13 @@
     width: 900px;
     margin: 100px auto;
 
+    @media (max-width: 1050px) {
+      width: 600px;
+    }
+    @media (max-width: 750px) {
+      width: 400px;
+    }
+
     .data-grid {
       font-size: 0.975rem;
       .actions-cell {

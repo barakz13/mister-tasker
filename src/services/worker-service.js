@@ -29,13 +29,13 @@ async function performTask(task) {
 }
 
 // Run worker
-async function _runWorker() {
+async function _runWorker(sortBy) {
   // The isWorkerOn is toggled by the button: "Start/Stop Task Worker"
   console.log('gIsWorkerOn', gIsWorkerOn);
   if (!gIsWorkerOn) return;
   var delay = 5000;
   try {
-    const task = await getNextTask();
+    const task = await getNextTask(sortBy);
     console.log(task);
     if (task) {
       try {
@@ -52,18 +52,22 @@ async function _runWorker() {
   } catch (err) {
     console.log(`Failed getting next task to execute`, err);
   } finally {
-    setTimeout(_runWorker, delay);
+    setTimeout(_runWorker, delay, sortBy);
   }
 }
 
-function startStopWorker(isWorkerOn) {
+function startStopWorker(isWorkerOn, sortBy) {
   gIsWorkerOn = isWorkerOn;
-  _runWorker();
+  _runWorker(sortBy);
 }
 
-async function getNextTask() {
+async function getNextTask(sortBy) {
   try {
-    const tasks = await firebaseService.filteredDocs();
+    const filterBy = {
+      triesCount: 6,
+      status: ['New', 'Failed'],
+    };
+    const tasks = await taskService.query(filterBy, sortBy);
     //   {
     //     $and: [
     //       { doneAt: null },

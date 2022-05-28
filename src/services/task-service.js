@@ -13,8 +13,12 @@ export const taskService = {
   getEmptyTask,
 };
 
-async function query() {
-  const tasks = await firebaseService.getDocuments(COLLECTION_NAME);
+async function query(filterBy = null, sortBy = null) {
+  const tasks = await firebaseService.getDocuments(
+    COLLECTION_NAME,
+    filterBy,
+    sortBy
+  );
   return tasks;
 }
 

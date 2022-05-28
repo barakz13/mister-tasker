@@ -3,12 +3,20 @@
 
   .task-app-btns {
     flex: 0.3;
-    .btn-worker {
-      width: 140px;
-      height: 80px;
-      font-size: 22px;
-      &:hover {
-        background: $gray-400;
+
+    .btn-worker-div {
+      width: 350px;
+      .btn-worker {
+        width: 115px;
+        height: 80px;
+        font-size: 15px;
+        &:hover {
+          background: $gray-400;
+        }
+
+        .btn-worker-span {
+          font-size: 11px;
+        }
       }
     }
 

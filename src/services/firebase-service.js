@@ -22,7 +22,6 @@ var gLastDocForPaging = null;
 
 export const firebaseService = {
   getDocuments,
-  filteredDocs,
   getDocument,
   addDocument,
   deleteDocument,
@@ -81,36 +80,58 @@ async function deleteDocument(collectionName, document) {
   await deleteDoc(doc(db, collectionName, document.id));
 }
 
-async function filteredDocs() {
-  const db = getFirestore();
-  var collectionRef = collection(db, 'task');
-  collectionRef = query(
-    collectionRef,
-    // where('status', 'not-in', filterBy.status),
-    orderBy('importance', 'asc')
-    // where('triesCount', '<', filterBy.triesCount)
-  );
-  const querySnapshot = await getDocs(collectionRef);
-  const docs = [];
-  querySnapshot.forEach((doc) => {
-    console.log(doc);
-    console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    docs.push({ id: doc.id, ...doc.data() });
-  });
-  console.log('docs after sort', docs);
-  const filteredByStatus = docs.filter((doc) => {
-    return doc.status !== 'Done' && doc.status !== 'Running';
-  });
-  const filteredByTriesCount = filteredByStatus.filter((doc) => {
-    return doc.triesCount < 6;
-  });
-  return filteredByTriesCount;
-}
+// async function filteredDocs() {
+//   const db = getFirestore();
+//   var collectionRef = collection(db, 'task');
+//   collectionRef = query(
+//     collectionRef,
+//     // where('status', 'not-in', filterBy.status),
+//     orderBy('importance', 'asc')
+//     // where('triesCount', '<', filterBy.triesCount)
+//   );
+//   const querySnapshot = await getDocs(collectionRef);
+//   const docs = [];
+//   querySnapshot.forEach((doc) => {
+//     console.log(doc);
+//     console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+//     docs.push({ id: doc.id, ...doc.data() });
+//   });
+//   console.log('docs after sort', docs);
+//   const filteredByStatus = docs.filter((doc) => {
+//     return doc.status !== 'Done' && doc.status !== 'Running';
+//   });
+//   const filteredByTriesCount = filteredByStatus.filter((doc) => {
+//     return doc.triesCount < 6;
+//   });
+//   return filteredByTriesCount;
+// }
 
-async function getDocuments(collectionName) {
+async function getDocuments(collectionName, filterBy, sortBy) {
+  console.log(filterBy);
+  console.log(sortBy);
   const db = getFirestore();
   var collectionRef = collection(db, collectionName);
-  var orderByParams = [];
+  if (filterBy) {
+    if (sortBy === 'importance') {
+      console.log('importance');
+      collectionRef = query(
+        collectionRef,
+        where('triesCount', '<', filterBy.triesCount),
+        where('status', 'in', filterBy.status),
+        orderBy('triesCount', 'asc'),
+        orderBy('importance', 'asc')
+      );
+    } else {
+      console.log('tries');
+      collectionRef = query(
+        collectionRef,
+        where('triesCount', '<', filterBy.triesCount),
+        where('status', 'in', filterBy.status),
+        orderBy('triesCount', 'asc')
+        // orderBy('importance', 'asc'),
+      );
+    }
+  }
   console.log(collectionRef);
   const querySnapshot = await getDocs(collectionRef);
   console.log(querySnapshot);
