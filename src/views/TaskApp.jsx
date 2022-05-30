@@ -11,20 +11,25 @@ export function TaskApp({ history }) {
   useEffect(() => {
     console.log('task app mounted');
     loadTasks();
+    window.addEventListener('worker-updated-task', loadTasks);
   }, []);
+
+  const test = () => {
+    console.log('im updating task');
+  };
 
   const loadTasks = async () => {
     const tasks = await taskService.query();
     setTasks(tasks);
   };
 
-  const onSave = async (id) => {
+  const onStartTask = async (id) => {
     try {
       const task = await taskService.getById(id);
-      task.status = 'Running';
-      loadTasks();
+      // task.status = 'Running';
+      // loadTasks();
       await workerService.performTask(task);
-      loadTasks();
+      // loadTasks();
     } catch (err) {}
   };
 
@@ -74,7 +79,7 @@ export function TaskApp({ history }) {
       </div>
       <TaskList
         tasks={tasks}
-        onSaveTask={onSave}
+        onSaveTask={onStartTask}
         onStartWorker={onStartWorker}
       />
     </section>

@@ -1,6 +1,6 @@
 import { taskService } from './task-service';
 import { externalService } from './externalService';
-import { firebaseService } from './firebase-service';
+import { workerEvent } from './util-service';
 
 export const workerService = {
   performTask,
@@ -13,6 +13,7 @@ async function performTask(task) {
   try {
     task.status = 'Running';
     await taskService.save(task);
+    window.dispatchEvent(workerEvent);
     var updatedTask = await taskService.getById(task.id);
     await externalService.execute(updatedTask);
     updatedTask.status = 'Done';
@@ -24,6 +25,7 @@ async function performTask(task) {
     updatedTask.lastTriedAt = Date.now();
     updatedTask.triesCount++;
     await taskService.save(updatedTask);
+    window.dispatchEvent(workerEvent);
     return updatedTask;
   }
 }

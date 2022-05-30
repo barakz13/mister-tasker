@@ -32,3 +32,5 @@ export function getTime2(timestamp) {
     date.getMinutes().toString().padStart(2, '0');
   return date;
 }
+
+export const workerEvent = new Event('worker-updated-task');
