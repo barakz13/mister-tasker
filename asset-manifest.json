@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/mister-tasker/static/css/main.aa1bbfbc.css",
-    "main.js": "/mister-tasker/static/js/main.61c5226c.js",
+    "main.css": "/mister-tasker/static/css/main.0f8d25b9.css",
+    "main.js": "/mister-tasker/static/js/main.5bf103c0.js",
     "static/media/robot.jpg": "/mister-tasker/static/media/robot.2c35d004d9ed9bd0612a.jpg",
     "index.html": "/mister-tasker/index.html",
-    "main.aa1bbfbc.css.map": "/mister-tasker/static/css/main.aa1bbfbc.css.map",
-    "main.61c5226c.js.map": "/mister-tasker/static/js/main.61c5226c.js.map"
+    "main.0f8d25b9.css.map": "/mister-tasker/static/css/main.0f8d25b9.css.map",
+    "main.5bf103c0.js.map": "/mister-tasker/static/js/main.5bf103c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa1bbfbc.css",
-    "static/js/main.61c5226c.js"
+    "static/css/main.0f8d25b9.css",
+    "static/js/main.5bf103c0.js"
   ]
 }
